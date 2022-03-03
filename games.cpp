@@ -45,7 +45,7 @@ int readInt(const char prompt[]){
     return temp;
 }
 
-
+//Function that reads game file
 Game readFile(ifstream &file){
   Game game;
   file.get(game.name, Game::MAX_CHAR, ';');
@@ -63,6 +63,7 @@ Game readFile(ifstream &file){
   return game;
 }
 
+//Function that fills each part of the array of structs with data from the file
 int readData(Game games[]){
   ifstream file("videogames.txt");
   int count = 0;
@@ -73,6 +74,7 @@ int readData(Game games[]){
   return count;
 }
 
+//Print function
 void print(Game g){
   cout << "Title of game: " << g.name << endl;
   cout << "Number of sales: " << g.sales << endl;
@@ -82,6 +84,7 @@ void print(Game g){
   cout << "Publisher: " << g.publisher << endl;
 }
 
+//Function to add a game
 void addGame(Game &g, int gamesAmount){
 
   cout << "Please enter a game title:" << endl;
@@ -105,12 +108,14 @@ void addGame(Game &g, int gamesAmount){
   
 }
 
+//Function to remove a game
 void removeGame(Game games[], int gamesAmount, int remove){
   for(int i = remove - 1; i < gamesAmount; i++){
     games[i] = games[i + 1];
   }
 }
 
+//Function that writes data in the array to the file, "saving" it
 void save(Game games[], int gamesAmount){
   ofstream out("videogames.txt");
   for (int i = 0; i < gamesAmount; i++){
@@ -123,6 +128,7 @@ void save(Game games[], int gamesAmount){
   }
 }
 
+//Menu fucntion
 int menu(int select){
   cout << "Please input a selection by inputting 1 - 7:" << endl;
   cout << "1) Reload previous version" << endl;
@@ -255,7 +261,8 @@ int main(){
       save(gamesNew, gamesAmount);
       cout << "Saving..." << endl;
     }
-    
+
+      //Quit
     else if (select == 7){
       cout << "Are you sure you want to quit? Make sure you saved your changes!" << endl;
       int choice = 0;
